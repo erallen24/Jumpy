@@ -5,7 +5,12 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Camera/CameraComponent.h"
+#include "EnhancedInputSubsystems.h"
+#include "InputMappingContext.h"
 #include "JumpyCharacter.generated.h"
+
 
 UCLASS()
 class JUMPY_API AJumpyCharacter : public ACharacter
@@ -21,9 +26,22 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere, Category = "mInput")
+	UInputMappingContext* IMC_Jumpy;
+
+	UPROPERTY(EditAnywhere, Category = "mInput")
+	UInputAction* MoveAction;
+
 private:
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArm;
 	
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* Camera;
 
 };
+
+// LOG EXAMPLES
+	// UE_LOG(LogTemp, Warning, TEXT("The float value is: %f"), ExampleFloat);
+	// UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), ExampleInteger);
+	// UE_LOG(LogTemp, Warning, TEXT("The vector value is: %s"), *ExampleVector.ToString());
