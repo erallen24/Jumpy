@@ -51,7 +51,6 @@ void AJumpyCharacter::BeginPlay()
 	
 }
 
-
 // Called every frame
 void AJumpyCharacter::Tick(float DeltaTime)
 {
@@ -64,5 +63,27 @@ void AJumpyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+
+	if (EnhancedInputComponent)
+	{
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AJumpyCharacter::Move);
+	}
+
+}
+
+void AJumpyCharacter::Move(const FInputActionValue& Value)
+{
+	FVector2D ReceiveValue = Value.Get<FVector2D>();
+
+	UE_LOG(LogTemp, Warning, TEXT("The vector value is: %s"), *ReceiveValue.ToString());
+
+	FRotator ControlRotation =  GetControlRotation();
+
+	FVector ForwardVector = FRotationMatrix(FRotator(0, ControlRotation.Yaw, 0)).GetUnitAxis(EAxis::X);
+	FVector RightVector = FRotationMatrix(FRotator(0, ControlRotation.Yaw, ControlRotation.Roll)).GetUnitAxis(EAxis::Y);
+
+	AddMovementInput(ForwardVector, ReceiveValue.Y);
+	AddMovementInput(RightVector, ReceiveValue.X);
 }
 

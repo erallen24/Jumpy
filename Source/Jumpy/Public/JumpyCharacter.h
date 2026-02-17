@@ -9,6 +9,7 @@
 #include "Camera/CameraComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputMappingContext.h"
+#include "EnhancedInputComponent.h"
 #include "JumpyCharacter.generated.h"
 
 
@@ -31,6 +32,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "mInput")
 	UInputAction* MoveAction;
+
+	
+	void Move(const FInputActionValue& Value);
 
 private:
 	UPROPERTY(VisibleAnywhere)
