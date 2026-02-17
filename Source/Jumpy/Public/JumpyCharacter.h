@@ -33,8 +33,17 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "mInput")
 	UInputAction* MoveAction;
 
+	UPROPERTY(EditAnywhere, Category = "mInput")
+	UInputAction* LookAction;
+
+
+	UPROPERTY(EditAnywhere, Category = "mInput")
+	UInputAction* JumpAction;
+
 	
 	void Move(const FInputActionValue& Value);
+	void Look(const FInputActionValue& Value);
+	void JumpFunc(const FInputActionValue& Value);
 
 private:
 	UPROPERTY(VisibleAnywhere)

@@ -33,9 +33,6 @@ void AJumpyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UE_LOG(LogTemp, Warning, TEXT("BeginPlay"));
-	
-	
 	APlayerController* JumpyController = Cast<APlayerController>(GetController());
 
 	if (JumpyController)
@@ -64,19 +61,18 @@ void AJumpyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
-
 	if (EnhancedInputComponent)
 	{
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AJumpyCharacter::Move);
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AJumpyCharacter::Look);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &AJumpyCharacter::JumpFunc);
 	}
-
 }
 
 void AJumpyCharacter::Move(const FInputActionValue& Value)
 {
 	FVector2D ReceiveValue = Value.Get<FVector2D>();
-
-	UE_LOG(LogTemp, Warning, TEXT("The vector value is: %s"), *ReceiveValue.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("The vector value is: %s"), *ReceiveValue.ToString());
 
 	FRotator ControlRotation =  GetControlRotation();
 
@@ -85,5 +81,19 @@ void AJumpyCharacter::Move(const FInputActionValue& Value)
 
 	AddMovementInput(ForwardVector, ReceiveValue.Y);
 	AddMovementInput(RightVector, ReceiveValue.X);
+}
+
+void AJumpyCharacter::Look(const FInputActionValue& Value)
+{
+	FVector2D ReceiveValue = Value.Get<FVector2D>();
+	UE_LOG(LogTemp, Warning, TEXT("The vector value is: %s"), *ReceiveValue.ToString());
+
+	AddControllerPitchInput(ReceiveValue.Y);
+	AddControllerYawInput(ReceiveValue.X);
+}
+
+void AJumpyCharacter::JumpFunc(const FInputActionValue& Value)
+{
+	Jump();
 }
 
