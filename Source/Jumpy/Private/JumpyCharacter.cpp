@@ -23,7 +23,7 @@ AJumpyCharacter::AJumpyCharacter()
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
 
-	GetCharacterMovement()->MaxWalkSpeed =250;
+	GetCharacterMovement()->MaxWalkSpeed = 500;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 
 }
@@ -86,7 +86,7 @@ void AJumpyCharacter::Move(const FInputActionValue& Value)
 void AJumpyCharacter::Look(const FInputActionValue& Value)
 {
 	FVector2D ReceiveValue = Value.Get<FVector2D>();
-	UE_LOG(LogTemp, Warning, TEXT("The vector value is: %s"), *ReceiveValue.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("The vector value is: %s"), *ReceiveValue.ToString());
 
 	AddControllerPitchInput(ReceiveValue.Y);
 	AddControllerYawInput(ReceiveValue.X);
