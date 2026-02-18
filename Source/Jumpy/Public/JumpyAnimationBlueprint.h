@@ -37,4 +37,11 @@ public:
 
 	FRotator CurrentFrameRotation;
 	FRotator LastFrameRotation;
+
+	//Jump Variables
+	UPROPERTY(BlueprintReadOnly)
+	bool isInAir;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool MovementInputBool;
 };

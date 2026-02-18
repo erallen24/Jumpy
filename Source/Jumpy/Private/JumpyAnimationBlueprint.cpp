@@ -35,6 +35,20 @@ void UJumpyAnimationBlueprint::NativeUpdateAnimation(float DeltaSeconds)
 		leanAmount = UKismetMathLibrary::FInterpTo(leanAmount, DeltaRotator.Yaw, DeltaSeconds, 2);
 
 		LastFrameRotation = JumpyCharacter->GetActorRotation();
+
+		// Calculate Jump
+		isInAir = JumpyCharacterMovement->IsFalling();
+		FVector MovementInputVector = JumpyCharacter->GetLastMovementInputVector();
+		double MovementInputValue = UKismetMathLibrary::VSize(MovementInputVector);
+
+		if (MovementInputValue > 0)
+		{
+			MovementInputBool = true;
+		}
+		else
+		{
+			MovementInputBool = false;
+		}
 	}
 }
 
