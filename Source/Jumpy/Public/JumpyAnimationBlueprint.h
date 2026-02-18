@@ -30,4 +30,11 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	double GroundSpeed;
+
+	// Lean Variables
+	UPROPERTY(BlueprintReadOnly)
+	double leanAmount;
+
+	FRotator CurrentFrameRotation;
+	FRotator LastFrameRotation;
 };
