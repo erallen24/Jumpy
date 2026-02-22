@@ -3,6 +3,7 @@
 
 #include "JumpyCharacter.h"
 
+
 // Sets default values
 AJumpyCharacter::AJumpyCharacter()
 {
@@ -37,6 +38,10 @@ void AJumpyCharacter::BeginPlay()
 
 	if (JumpyController)
 	{
+
+		PlayerHUD = CreateWidget<UJumpyUI>(JumpyController, widgetSubclass);
+		PlayerHUD->AddToViewport();
+
 		UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(JumpyController->GetLocalPlayer());
 
 		if (Subsystem)

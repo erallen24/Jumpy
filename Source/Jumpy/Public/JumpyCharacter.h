@@ -10,8 +10,9 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputMappingContext.h"
 #include "EnhancedInputComponent.h"
+#include "Blueprint/UserWidget.h"
+#include "JumpyUI.h"
 #include "JumpyCharacter.generated.h"
-
 
 UCLASS()
 class JUMPY_API AJumpyCharacter : public ACharacter
@@ -23,6 +24,11 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> widgetSubclass;
+
+	UJumpyUI* PlayerHUD;
 
 protected:
 	virtual void BeginPlay() override;
