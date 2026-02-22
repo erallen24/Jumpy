@@ -55,6 +55,7 @@ private:
 };
 
 // LOG EXAMPLES
+	// UE_LOG(LogTemp, Warning, TEXT("Message"));
 	// UE_LOG(LogTemp, Warning, TEXT("The float value is: %f"), ExampleFloat);
 	// UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), ExampleInteger);
 	// UE_LOG(LogTemp, Warning, TEXT("The vector value is: %s"), *ExampleVector.ToString());
