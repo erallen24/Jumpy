@@ -28,6 +28,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> widgetSubclass;
 
+	UPROPERTY()
 	UJumpyUI* PlayerHUD;
 
 protected:
